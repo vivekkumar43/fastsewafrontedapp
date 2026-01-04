@@ -20,96 +20,119 @@
     <style>
 
 
+/* --- PREMIUM APP DOWNLOAD POPUP --- */
+        #fsAppPopup {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100000;
+            display: none;
+            animation: premiumPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-#fsAppPopup {
-    position: fixed;
-    bottom: 90px;
-    left: 25px;
-    z-index: 99998;
-    animation: popIn .8s cubic-bezier(.68,-0.6,.32,1.6);
-}
+        @keyframes premiumPop {
+            from { transform: translateY(100px) scale(0.8); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
 
-@keyframes popIn {
-    from { transform: translateY(80px) scale(.6); opacity: 0; }
-    to   { transform: none; opacity: 1; }
-}
+        .fs-premium-card {
+            width: 330px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            position: relative;
+        }
 
-.fs-popup-card {
-    width: 300px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    padding: 14px;
-}
+        .fs-popup-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: var(--primary);
+        }
 
-.fs-popup-top {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-weight:600;
-    color:#ff5722;
-}
+        .fs-close-btns button {
+            background: #f1f5f9;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 12px;
+            color: #64748b;
+            transition: 0.3s;
+        }
+        .fs-close-btns button:hover { background: #e2e8f0; color: var(--primary-dark); }
 
-.fs-popup-top button {
-    background:none;border:none;font-size:16px;cursor:pointer;
-}
+        .fs-popup-body {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
 
-.fs-popup-body {
-    display:flex;
-    gap:12px;
-    align-items:center;
-    margin:10px 0;
-}
+        .fs-app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.2);
+            animation: floatIcon 3s ease-in-out infinite;
+        }
 
-.fs-popup-body img {
-    width:55px;
-    animation: floaty 3s ease-in-out infinite;
-}
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
 
-@keyframes floaty {
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-8px)}
-}
+        .fs-header-text h4 { font-size: 16px; color: var(--dark); font-weight: 700; margin-bottom: 2px; }
+        .fs-header-text p { font-size: 12px; color: #64748b; }
 
-.fs-popup-body h4 { font-size:14px;margin:0;color:#222; }
-.fs-popup-body p  { font-size:12px;color:#555;margin:0; }
+        .fs-download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--dark);
+            color: white !important;
+            padding: 14px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
+        }
+        .fs-download-btn:hover { 
+            background: var(--primary); 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 20px rgba(255, 87, 34, 0.3); 
+        }
 
-.fs-play-btn {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:8px;
-    padding:10px;
-    background:#ff5722;
-    color:white;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:600;
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-    from{box-shadow:0 0 5px rgba(255,87,34,.4)}
-    to{box-shadow:0 0 20px rgba(255,87,34,.9)}
-}
-
-#fsAppMin {
-    position:fixed;
-    bottom:90px;
-    left:25px;
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    background:#ff5722;
-    color:white;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    font-size:24px;
-    cursor:pointer;
-    z-index:99998;
-}
-
+        /* Mini Floating Button */
+        #fsAppMin {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 99999;
+            box-shadow: 0 10px 25px rgba(255, 87, 34, 0.4);
+        }
 
 
 
@@ -470,57 +493,81 @@
     </div>
 
 
-
 <div id="fsAppPopup">
-  <div class="fs-popup-card">
-    <div class="fs-popup-top">
-      <span>📲 FastSewa App</span>
-      <div>
-        <button id="fsMin">—</button>
-        <button id="fsClose">✕</button>
-      </div>
+        <div class="fs-premium-card">
+            <div class="fs-popup-top">
+                <span>📲 FastSewa App</span>
+                <div class="fs-close-btns">
+                    <button id="fsMin">—</button>
+                    <button id="fsClose">✕</button>
+                </div>
+            </div>
+
+            <div class="fs-popup-body">
+                <img src="images/logo1.png" alt="FastSewa" class="fs-app-icon" onerror="this.src='https://cdn-icons-png.flaticon.com/512/888/888839.png'">
+                <div class="fs-header-text">
+                    <h4>FastSewa Mobile</h4>
+                    <p>Official V3.0 Release</p>
+                </div>
+            </div>
+
+            <p style="font-size: 12px; color: #64748b; margin-bottom: 15px; text-align: left; line-height: 1.4;">
+                Book services faster & get instant AI help on your smartphone. Experience India's Super Service Portal.
+            </p>
+
+            <a href="public/fastsewa-release.apk" download="FastSewa_V3.apk" class="fs-download-btn" id="dlBtn">
+                <i class="fas fa-download"></i> Download APK Now
+            </a>
+            
+            <p style="font-size: 10px; color: #94a3b8; margin-top: 10px; text-align: center;">
+                Check <a href="terms.html" style="color: var(--primary);">Terms</a> before installation.
+            </p>
+        </div>
     </div>
 
-    <div class="fs-popup-body">
-      <img src="https://cdn-icons-png.flaticon.com/512/888/888839.png">
-      <div>
-        <h4>Download FastSewa App</h4>
-        <p>Book services faster & get instant AI help on mobile.</p>
-      </div>
-    </div>
+    <div id="fsAppMin"><i class="fas fa-mobile-alt"></i></div>
 
-    <a href="https://play.google.com/store/apps/details?id=com.fastsewa.app"
-       target="_blank" class="fs-play-btn">
-       <i class="fab fa-google-play"></i> Download on Play Store
-    </a>
-  </div>
-</div>
+    <div id="fastsewa-footer"></div>
 
-<div id="fsAppMin">📱</div>
-<script>
-const popup = document.getElementById("fsAppPopup");
-const minBtn = document.getElementById("fsMin");
-const closeBtn = document.getElementById("fsClose");
-const mini = document.getElementById("fsAppMin");
+    <script src="js/footer.js"></script>
+    
+    <script>
+        const popup = document.getElementById("fsAppPopup");
+        const mini = document.getElementById("fsAppMin");
+        const minBtn = document.getElementById("fsMin");
+        const closeBtn = document.getElementById("fsClose");
 
-if(!localStorage.getItem("fsPopupClosed")){
-   popup.style.display="block";
-}
+        // --- POPUP LOGIC ---
+        window.onload = () => {
+            if(!localStorage.getItem("fsPopupClosed")) {
+                setTimeout(() => { popup.style.display = "block"; }, 2500);
+            } else {
+                mini.style.display = "flex";
+            }
+        };
 
-closeBtn.onclick = ()=>{
-  popup.style.display="none";
-  localStorage.setItem("fsPopupClosed","1");
-};
+        closeBtn.onclick = () => {
+            popup.style.display = "none";
+            mini.style.display = "none"; // पूरी तरह बंद करने के लिए
+            localStorage.setItem("fsPopupClosed", "true");
+        };
 
-minBtn.onclick = ()=>{
-  popup.style.display="none";
-  mini.style.display="flex";
-};
+        minBtn.onclick = () => {
+            popup.style.display = "none";
+            mini.style.display = "flex";
+        };
 
-mini.onclick = ()=>{
-  popup.style.display="block";
-  mini.style.display="none";
-};
+        mini.onclick = () => {
+            popup.style.display = "block";
+            mini.style.display = "none";
+        };
+
+        // Scroll Reveal Logic
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+        });
 </script>
 
 
