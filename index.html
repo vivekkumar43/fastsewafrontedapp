@@ -18,6 +18,101 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+
+
+
+#fsAppPopup {
+    position: fixed;
+    bottom: 90px;
+    left: 25px;
+    z-index: 99998;
+    animation: popIn .8s cubic-bezier(.68,-0.6,.32,1.6);
+}
+
+@keyframes popIn {
+    from { transform: translateY(80px) scale(.6); opacity: 0; }
+    to   { transform: none; opacity: 1; }
+}
+
+.fs-popup-card {
+    width: 300px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    padding: 14px;
+}
+
+.fs-popup-top {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-weight:600;
+    color:#ff5722;
+}
+
+.fs-popup-top button {
+    background:none;border:none;font-size:16px;cursor:pointer;
+}
+
+.fs-popup-body {
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin:10px 0;
+}
+
+.fs-popup-body img {
+    width:55px;
+    animation: floaty 3s ease-in-out infinite;
+}
+
+@keyframes floaty {
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+}
+
+.fs-popup-body h4 { font-size:14px;margin:0;color:#222; }
+.fs-popup-body p  { font-size:12px;color:#555;margin:0; }
+
+.fs-play-btn {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    padding:10px;
+    background:#ff5722;
+    color:white;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from{box-shadow:0 0 5px rgba(255,87,34,.4)}
+    to{box-shadow:0 0 20px rgba(255,87,34,.9)}
+}
+
+#fsAppMin {
+    position:fixed;
+    bottom:90px;
+    left:25px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#ff5722;
+    color:white;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    cursor:pointer;
+    z-index:99998;
+}
+
+
+
+
         /* --- ROOT VARIABLES & RESET --- */
         :root {
             --primary: #ff5722;
@@ -374,6 +469,65 @@
         </div>
     </div>
 
+
+
+<div id="fsAppPopup">
+  <div class="fs-popup-card">
+    <div class="fs-popup-top">
+      <span>📲 FastSewa App</span>
+      <div>
+        <button id="fsMin">—</button>
+        <button id="fsClose">✕</button>
+      </div>
+    </div>
+
+    <div class="fs-popup-body">
+      <img src="https://cdn-icons-png.flaticon.com/512/888/888839.png">
+      <div>
+        <h4>Download FastSewa App</h4>
+        <p>Book services faster & get instant AI help on mobile.</p>
+      </div>
+    </div>
+
+    <a href="https://play.google.com/store/apps/details?id=com.fastsewa.app"
+       target="_blank" class="fs-play-btn">
+       <i class="fab fa-google-play"></i> Download on Play Store
+    </a>
+  </div>
+</div>
+
+<div id="fsAppMin">📱</div>
+<script>
+const popup = document.getElementById("fsAppPopup");
+const minBtn = document.getElementById("fsMin");
+const closeBtn = document.getElementById("fsClose");
+const mini = document.getElementById("fsAppMin");
+
+if(!localStorage.getItem("fsPopupClosed")){
+   popup.style.display="block";
+}
+
+closeBtn.onclick = ()=>{
+  popup.style.display="none";
+  localStorage.setItem("fsPopupClosed","1");
+};
+
+minBtn.onclick = ()=>{
+  popup.style.display="none";
+  mini.style.display="flex";
+};
+
+mini.onclick = ()=>{
+  popup.style.display="block";
+  mini.style.display="none";
+};
+</script>
+
+
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         // --- 1. EMAIL & SCROLL ANIMATION ---
@@ -471,5 +625,6 @@
         }
 
     </script>
+    
 </body>
 </html>

@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <ul class="footer-links">
                         <li><a href="login.html">Login / Signup</a></li>
                         <li><a href="dashboard.html">User Dashboard</a></li>
-                        <li><a href="support.html">Support Center</a></li> <li><a href="team.html">Our Team</a></li>
+                        <li><a href="support1.html">Support Center</a></li> <li><a href="team.html">Our Team</a></li>
                         <li><a href="terms.html">Terms & Conditions</a></li>
                     </ul>
                 </div>
